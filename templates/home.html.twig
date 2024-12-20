@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'accueil - Restaurants{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-semibold text-center mb-8">Discover Our Best Restaurants</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for restaurant in restaurants %}
+            {% include 'parts/restaurantCard.html.twig' %}
+        {% else %}
+            <p class="text-center text-gray-500">No restaurants found</p>
+        {% endfor %}
+    </div>
+{% endblock %}

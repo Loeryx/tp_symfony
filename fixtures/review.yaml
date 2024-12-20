@@ -1,10 +1,8 @@
 App\Entity\Review:
 
-    review_template (template):
+    review_{1..100}:
         title: '<sentence()>'
-        comment: '<paragraph()>'
+        comment: '<sentence()>'
         rating: '<numberBetween(1, 5)>'
         publisher: '@user_*'
         ratedRestaurant: '@restaurant_*'
-
-    review_{1..100} (extends review_template):

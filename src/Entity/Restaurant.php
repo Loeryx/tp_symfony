@@ -43,21 +43,8 @@ class Restaurant
     #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'ratedRestaurant', orphanRemoval: true)]
     private Collection $reviews;
 
-    /**
-     * @ORM\Column(type="string", enumType=RestaurantCategoryEnum::class)
-     */
-    private RestaurantCategoryEnum $category;
-
-
-    public function getCategory(): RestaurantCategoryEnum
-    {
-        return $this->category;
-    }
-
-    public function setCategory(RestaurantCategoryEnum $category): void
-    {
-        $this->category = $category;
-    }
+    #[ORM\Column(enumType: RestaurantCategoryEnum::class)]
+    private ?RestaurantCategoryEnum $category = null;
 
     public function __construct()
     {
@@ -193,6 +180,18 @@ class Restaurant
                 $review->setRatedRestaurant(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?RestaurantCategoryEnum
+    {
+        return $this->category;
+    }
+
+    public function setCategory(RestaurantCategoryEnum $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

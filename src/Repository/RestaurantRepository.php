@@ -16,6 +16,17 @@ class RestaurantRepository extends ServiceEntityRepository
         parent::__construct($registry, Restaurant::class);
     }
 
+    public function findPopular(int $maxResults): array
+    {
+        return $this->createQueryBuilder('r')
+            ->leftJoin('r.reviews', 'rev')
+            ->groupBy('r.id')
+            ->orderBy('COUNT(rev)', 'DESC')
+            ->setMaxResults($maxResults)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Restaurant[] Returns an array of Restaurant objects
     //     */

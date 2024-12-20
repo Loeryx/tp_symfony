@@ -1,7 +1,5 @@
 App\Entity\Table:
-  table_template (template):
+  table_{1..100}:
     seats: '<numberBetween(1, 15)>'
     restaurant: '@restaurant_*'
     reservations: '@reservation_{1..5}'
-
-  table_{1..100} (extends table_template):
