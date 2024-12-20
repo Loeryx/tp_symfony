@@ -1,0 +1,7 @@
+App\Entity\Menu:
+  menu_{1..50}:
+    name: '<word()>'
+    description: '<sentence()>'
+    price: '<numberBetween(5, 70)>'
+    restaurant: '@restaurant_*'
+

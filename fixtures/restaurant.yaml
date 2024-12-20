@@ -1,0 +1,22 @@
+
+App\Entity\Restaurant:
+    restaurant_template (template):
+        name: '<word()>'
+        address: '<address()>'
+        phone: '<phoneNumber()>'
+        menus: '@menu_{1..5}'
+        tables: '@table_{1..50}'
+        reviews: '@review_{1..100}'
+
+    restaurant_Fr_{1..50} (extends restaurant_template):
+        category: !php/const App\Enum\RestaurantCategoryEnum::FRENCH
+
+    restaurant_It_{1..50} (template):
+        category: !php/const App\Enum\RestaurantCategoryEnum::ITALIAN
+
+    restaurant_Ch_{1..50} (template):
+        category: !php/const App\Enum\RestaurantCategoryEnum::CHINESE
+
+    restaurant_In_{1..50} (template):
+        category: !php/const App\Enum\RestaurantCategoryEnum::INDIAN
+

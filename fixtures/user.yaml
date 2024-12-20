@@ -1,0 +1,19 @@
+App\Entity\User:
+  user_template (template):
+    email: '<email()>'
+    name: '<name()>'
+    lastName: '<lastName()>'
+    password: '<password()>'
+    reservations: '@reservation_{1..10}'
+    reviews: '@review_{1..10}'
+    roles: [ROLE_USER]
+
+  user_admin (extends user_template):
+    email: 'admin\@example.com'
+    password: 'motdepassesecure'
+    roles: [ROLE_ADMIN]
+
+  user_banned (extends user_template):
+    roles: [ROLE_BANNED]
+
+  user_{1..100} (extends user_template):

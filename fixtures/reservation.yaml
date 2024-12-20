@@ -1,0 +1,7 @@
+App\Entity\Reservation:
+  reservation_template (template):
+    reservationDate: '<dateTimeBetween("now", "+1 month")>'
+    reservedTable: '@table_*'
+    customer: '@user_*'
+
+  reservation_{1..100} (extends reservation_template):
