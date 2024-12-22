@@ -1,19 +1,32 @@
-# 🍽️ **Projet Symfony - Gestion de Restaurants**
-
-Bienvenue dans le projet Symfony dédié à la gestion de restaurants. Cette application permet aux utilisateurs de naviguer parmi une liste de restaurants, réserver une table, et gérer leurs profils. Les administrateurs peuvent gérer les données tandis que les utilisateurs bannis ont des accès restreints.
+# 🍽️ **Symfony project 13 - Restaurant management**
 
 ---
 
-## **Lien du repository**
+## 🔗 **Repository link**
 https://github.com/Loeryx/tp_symfony
 
+## 🚀 **Start the project**
+```bash
+# Install dependencies
+composer install
+npm install
 
-## 🔑 **Accès Démo**
+# Start assets
+npm run dev
 
-Des comptes de démonstration sont disponibles :
+# Start server
+symfony server:start
+```
 
-| **Rôle**              | **Email**           | **Mot de Passe**    |
-|------------------------|---------------------|---------------------|
-| 👤 **Utilisateur**     | `user@example.com`  | `motdepassesecure` |
-| 🔑 **Administrateur**  | `admin@example.com` | `motdepassesecure` |
-| 🚫 **Utilisateur Banni** | `banned@example.com` | `motdepassesecure` |
+I'm using MySQL database
+
+
+## 🔑 **Demo access**
+
+Here are the different access available to test the application:
+
+| **Role**            | **Email**           | **Password**       |
+|---------------------|---------------------|--------------------|
+| 👤 **User**         | `user@example.com`  | `motdepassesecure` |
+| 🔑 **Admin**        | `admin@example.com` | `motdepassesecure` |
+| 🚫 **Banned user**  | `banned@example.com` | `motdepassesecure` |
