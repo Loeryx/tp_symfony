@@ -23,7 +23,7 @@ class UserType extends AbstractType
                 'expanded' => true,
                 'multiple' => false,
                 'label' => 'Roles',
-                'mapped' => false, // Pour ne pas mapper directement l'array sur le formulaire
+                'mapped' => false,
                 'data' => isset($options['data']) && isset($options['data']->getRoles()[0])
                     ? $options['data']->getRoles()[0]
                     : 'ROLE_USER',

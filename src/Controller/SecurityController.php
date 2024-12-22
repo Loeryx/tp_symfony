@@ -19,11 +19,10 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         if ($this->getUser() && in_array('ROLE_BANNED', $this->getUser()->getRoles())) {
-            // Rediriger vers la page d'erreur si l'utilisateur est banni
             return $this->redirectToRoute('page_bannedpage');
         }
 
-        return $this->render('security/login2.html.twig', [
+        return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
         ]);

@@ -47,8 +47,6 @@ final class ReservationController extends AbstractController
         ]);
     }
 
-
-
     #[Route('/admin/reservation' , name: 'app_reservation_index', methods: ['GET'])]
     #[IsGranted('ROLE_ADMIN')]
     public function index(Request $request, ReservationRepository $reservationRepository): Response
