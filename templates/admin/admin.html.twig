@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block body %}
+    <div class="max-w-6xl mx-auto p-6 bg-white shadow-md rounded-lg">
+        <h1 class="text-3xl font-semibold mb-6 text-center">Admin Dashboard</h1>
+        <p class="text-center text-gray-600 mb-8">Accédez rapidement aux différentes sections d'administration.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="{{ path('app_menu_index') }}" class="block p-4 bg-blue-100 rounded-lg text-center hover:bg-blue-200">
+                🍽️ <span class="font-semibold">Menus</span>
+            </a>
+            <a href="{{ path('app_reservation_index') }}" class="block p-4 bg-green-100 rounded-lg text-center hover:bg-green-200">
+                📅 <span class="font-semibold">Réservations</span>
+            </a>
+            <a href="{{ path('app_restaurant_index') }}" class="block p-4 bg-yellow-100 rounded-lg text-center hover:bg-yellow-200">
+                🏢 <span class="font-semibold">Restaurants</span>
+            </a>
+            <a href="{{ path('app_review_index') }}" class="block p-4 bg-purple-100 rounded-lg text-center hover:bg-purple-200">
+                ⭐ <span class="font-semibold">Avis</span>
+            </a>
+            <a href="{{ path('app_table_index') }}" class="block p-4 bg-red-100 rounded-lg text-center hover:bg-red-200">
+                🍴 <span class="font-semibold">Tables</span>
+            </a>
+            <a href="{{ path('app_user_index') }}" class="block p-4 bg-gray-100 rounded-lg text-center hover:bg-gray-200">
+                👤 <span class="font-semibold">Utilisateurs</span>
+            </a>
+        </div>
+
+    </div>
+{% endblock %}

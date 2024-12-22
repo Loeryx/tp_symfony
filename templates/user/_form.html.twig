@@ -1,0 +1,57 @@
+{{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
+
+<div class="space-y-6">
+    <div>
+        {{ form_label(form.email, 'Email', {'label_attr': {'class': 'block text-lg font-medium'}}) }}
+        <div class="mt-1">
+            {{ form_widget(form.email, {'attr': {'class': 'block w-full p-3 border border-gray-300 rounded-md'}}) }}
+        </div>
+    </div>
+
+    <div>
+        {{ form_label(form.name, 'First Name', {'label_attr': {'class': 'block text-lg font-medium'}}) }}
+        <div class="mt-1">
+            {{ form_widget(form.name, {'attr': {'class': 'block w-full p-3 border border-gray-300 rounded-md'}}) }}
+        </div>
+    </div>
+
+    <div>
+        {{ form_label(form.lastName, 'Last Name', {'label_attr': {'class': 'block text-lg font-medium'}}) }}
+        <div class="mt-1">
+            {{ form_widget(form.lastName, {'attr': {'class': 'block w-full p-3 border border-gray-300 rounded-md'}}) }}
+        </div>
+    </div>
+
+    <div>
+        {{ form_label(form.phone, 'Phone Number', {'label_attr': {'class': 'block text-lg font-medium'}}) }}
+        <div class="mt-1">
+            {{ form_widget(form.phone, {'attr': {'class': 'block w-full p-3 border border-gray-300 rounded-md'}}) }}
+        </div>
+    </div>
+
+    <div>
+        {{ form_label(form.password, 'Password', {'label_attr': {'class': 'block text-lg font-medium'}}) }}
+        <div class="mt-1">
+            {{ form_widget(form.password, {'attr': {'class': 'block w-full p-3 border border-gray-300 rounded-md'}}) }}
+        </div>
+    </div>
+
+    <div>
+        {{ form_label(form.roles, 'Roles', {'label_attr': {'class': 'block text-lg font-medium mb-2'}}) }}
+        <div class="mt-2 space-y-4">
+            {{ form_widget(form.roles, {
+                'attr': {
+                    'class': 'flex items-center space-x-3 p-2 cursor-pointer'
+                }
+            }) }}
+        </div>
+    </div>
+
+
+</div>
+
+<button type="submit" class="mt-6 bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-500">
+    {{ button_label|default('Save') }}
+</button>
+
+{{ form_end(form) }}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation index{% endblock %}
+
+{% block body %}
+    <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
+        <h1 class="text-3xl font-semibold mb-6 text-center">Reservation Index</h1>
+
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+            <table class="table-auto w-full bg-white">
+                <thead>
+                <tr class="bg-gray-200">
+                    <th class="py-2 px-4 border">Id</th>
+                    <th class="py-2 px-4 border">Reservation Date</th>
+                    <th class="py-2 px-4 border">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for reservation in reservations %}
+                    <tr class="border-t">
+                        <td class="py-2 px-4">{{ reservation.id }}</td>
+                        <td class="py-2 px-4">{{ reservation.reservationDate ? reservation.reservationDate|date('Y-m-d H:i:s') : '' }}</td>
+                        <td class="py-2 px-4">
+                            <a href="{{ path('app_reservation_show', {'id': reservation.id}) }}" class="text-blue-600 hover:underline">Show</a>
+                            <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}" class="ml-4 text-yellow-500 hover:underline">Edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center py-4">No records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-6 text-center">
+            <div class="flex justify-center items-center space-x-2">
+                {% if currentPage > 1 %}
+                    <a href="{{ path('app_reservation_index', {'page': currentPage - 1}) }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">Previous</a>
+                {% endif %}
+
+                {% if currentPage < totalPages %}
+                    <a href="{{ path('app_reservation_index', {'page': currentPage + 1}) }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">Next</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-8">
+        <a href="{{ path('app_reservation_new') }}" class="text-blue-600 hover:underline">Create new Reservation</a>
+    </div>
+
+{% endblock %}

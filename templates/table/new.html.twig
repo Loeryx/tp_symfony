@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Table{% endblock %}
+
+{% block body %}
+    <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
+        <h1 class="text-3xl font-semibold mb-6 text-center">Create new Table</h1>
+
+        {{ include('table/_form.html.twig') }}
+
+        <div class="mt-6 text-center">
+            <a href="{{ path('app_table_index') }}" class="flex items-center bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-500 w-max mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to list
+            </a>
+        </div>
+    </div>
+{% endblock %}

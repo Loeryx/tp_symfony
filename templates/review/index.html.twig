@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Review Index{% endblock %}
+
+{% block body %}
+    <h1 class="text-2xl font-semibold mb-4">Review Index</h1>
+
+    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+        <table class="table-auto w-full">
+            <thead>
+            <tr class="bg-gray-200">
+                <th class="py-2 px-4 border">Id</th>
+                <th class="py-2 px-4 border">Comment</th>
+                <th class="py-2 px-4 border">Rating</th>
+                <th class="py-2 px-4 border">Title</th>
+                <th class="py-2 px-4 border">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for review in reviews %}
+                <tr class="border-t">
+                    <td class="py-2 px-4">{{ review.id }}</td>
+                    <td class="py-2 px-4">{{ review.comment }}</td>
+                    <td class="py-2 px-4">{{ review.rating }}</td>
+                    <td class="py-2 px-4">{{ review.title }}</td>
+                    <td class="py-2 px-4">
+                        <a href="{{ path('app_review_show', {'id': review.id}) }}" class="text-blue-600 hover:underline">Show</a>
+                        <a href="{{ path('app_review_edit', {'id': review.id}) }}" class="ml-4 text-yellow-500 hover:underline">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center py-4">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="mt-4 mb-4 flex justify-center items-center space-x-2">
+            {% if currentPage > 1 %}
+                <a href="{{ path('app_review_index', {'page': currentPage - 1}) }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">Previous</a>
+            {% endif %}
+
+            {% if currentPage < totalPages %}
+                <a href="{{ path('app_review_index', {'page': currentPage + 1}) }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">Next</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="{{ path('app_review_new') }}" class="text-blue-600 hover:underline">Create new Review</a>
+    </div>
+{% endblock %}

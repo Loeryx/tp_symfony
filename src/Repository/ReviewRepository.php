@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Review;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -14,6 +15,18 @@ class ReviewRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Review::class);
+    }
+
+    public function findAllPaginated(int $page = 1, int $limit = 10): Paginator
+    {
+        $queryBuilder = $this->createQueryBuilder('m')
+            ->orderBy('m.id', 'ASC');
+
+        $query = $queryBuilder->getQuery();
+        $query->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit);
+
+        return new Paginator($query);
     }
 
     //    /**

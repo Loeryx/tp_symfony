@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu index{% endblock %}
+
+{% block body %}
+    <h1 class="text-2xl font-semibold mb-4">Menu Index</h1>
+
+    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+        <table class="table-auto w-full">
+            <thead>
+            <tr class="bg-gray-200">
+                <th class="py-2 px-4 border">Id</th>
+                <th class="py-2 px-4 border">Name</th>
+                <th class="py-2 px-4 border">Description</th>
+                <th class="py-2 px-4 border">Price</th>
+                <th class="py-2 px-4 border">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for menu in menus %}
+                <tr class="border-t">
+                    <td class="py-2 px-4">{{ menu.id }}</td>
+                    <td class="py-2 px-4">{{ menu.name }}</td>
+                    <td class="py-2 px-4">{{ menu.description }}</td>
+                    <td class="py-2 px-4">{{ menu.price }}</td>
+                    <td class="py-2 px-4">
+                        <a href="{{ path('app_menu_show', {'id': menu.id}) }}" class="text-blue-600 hover:underline">Show</a>
+                        <a href="{{ path('app_menu_edit', {'id': menu.id}) }}" class="ml-4 text-yellow-500 hover:underline">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center py-4">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="mt-4 mb-4 flex justify-center items-center space-x-2">
+            {% if currentPage > 1 %}
+                <a href="{{ path('app_menu_index', {'page': currentPage - 1}) }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">Previous</a>
+            {% endif %}
+
+            {% if currentPage < totalPages %}
+                <a href="{{ path('app_menu_index', {'page': currentPage + 1}) }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">Next</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="{{ path('app_menu_new') }}" class="text-blue-600 hover:underline">Create new Menu</a>
+    </div>
+{% endblock %}

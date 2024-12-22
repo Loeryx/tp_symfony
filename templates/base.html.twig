@@ -12,17 +12,29 @@
 <nav class="bg-blue-600 text-white p-4">
     <div class="container mx-auto flex items-center justify-between">
         <a href="{{ path('page_homepage') }}" class="text-2xl font-semibold">Let's eat</a>
+
+        {% if app.user %}
+            {% if 'ROLE_BANNED' not in app.user.roles %}
+                <span class="text-center text-xl font-semibold flex-1">
+                    Welcome, {{ app.user.name }} {{ app.user.lastName }}
+                </span>
+            {% endif %}
+        {% endif %}
+
         <ul class="flex space-x-6">
             <li><a href="{{ path('page_homepage') }}" class="hover:text-blue-300">Home</a></li>
 
             {% if app.user %}
-                <span class="">Welcome, {{ app.user.name }} {{ app.user.lastName }}</span>
-                {% if 'ROLE_ADMIN' in app.user.roles %}
-                    <li><a href="" class="hover:text-blue-300">Admin</a></li>
-                {% elseif 'ROLE_USER' in app.user.roles %}
-                    <li><a href="" class="hover:text-blue-300">Profile</a></li>
+                {% if 'ROLE_BANNED' not in app.user.roles %}
+                    {% if 'ROLE_ADMIN' in app.user.roles %}
+                        <li><a href="{{ path('page_adminpage') }}" class="hover:text-blue-300">Admin</a></li>
+                    {% elseif 'ROLE_USER' in app.user.roles %}
+                        <li><a href="" class="hover:text-blue-300">Profile</a></li>
+                    {% endif %}
+                    <li><a href="{{ path('app_logout') }}" class="hover:text-blue-300">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ path('app_logout') }}" class="hover:text-blue-300">Login</a></li>
                 {% endif %}
-                <li><a href="{{ path('app_logout') }}" class="hover:text-blue-300">Logout</a></li>
             {% else %}
                 <li><a href="{{ path('app_login') }}" class="hover:text-blue-300">Login</a></li>
             {% endif %}

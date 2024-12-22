@@ -12,4 +12,9 @@ enum RestaurantCategoryEnum: string
     case AMERICAN = 'american';
     case MEXICAN = 'mexican';
     case INDIAN = 'indian';
+
+    public function _toString():string
+    {
+        return $this->value;
+    }
 }

@@ -33,10 +33,18 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/banned', name: 'page_bannedpage')]
+    #[Route('/banned', 'page_bannedpage')]
     public function banned(): Response
     {
         return $this->render('banned.html.twig', [
+            'message' => 'You are banned from this platform. Please contact support if you think this is a mistake.',
+        ]);
+    }
+
+    #[Route('/admin', 'page_adminpage')]
+    public function admin(): Response
+    {
+        return $this->render('admin/admin.html.twig', [
             'message' => 'You are banned from this platform. Please contact support if you think this is a mistake.',
         ]);
     }
