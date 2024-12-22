@@ -13,10 +13,18 @@
                 <p class="text-lg text-gray-600 mt-2">Phone: {{ restaurant.phone }}</p>
                 <p class="text-lg text-gray-600 mt-2">Category: {{ restaurant.category.value }}</p>
                 <div class="mt-4">
-                    <a href=""
-                       class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                        Make a Reservation
-                    </a>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a href="{{ path('app_new_reservation_from_user', {'id': restaurant.id}) }}"
+                           class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                            Make a Reservation
+                        </a>
+                    {% else %}
+                        <p class="text-red-600">
+                            You need to
+                            <a href="{{ path('app_login') }}" class="text-blue-600 hover:underline">log in</a>
+                            to make a reservation.
+                        </p>
+                    {% endif %}
                 </div>
             </div>
         </div>

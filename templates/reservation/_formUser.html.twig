@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+<div class="space-y-6">
+    <div>
+        {{ form_label(form.reservationDate, 'Reservation Date', {'label_attr': {'class': 'block text-lg font-medium'}}) }}
+        <div class="mt-1">
+            {{ form_widget(form.reservationDate, {'attr': {'class': 'block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600'}}) }}
+        </div>
+    </div>
+
+    <div>
+        <label class="block text-lg font-medium">Customer's Name</label>
+        <div class="mt-1">
+            <label>
+                <input type="text" value="{{ app.user.lastName }}" disabled
+                       class="block w-full p-3 border border-gray-300 rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400">
+            </label>
+        </div>
+    </div>
+</div>
+
+<button type="submit" class="mt-6 bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-500">
+    {{ button_label|default('Save') }}
+</button>
+{{ form_end(form) }}
