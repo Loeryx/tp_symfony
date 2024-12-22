@@ -4,6 +4,10 @@ Bienvenue dans le projet Symfony dédié à la gestion de restaurants. Cette app
 
 ---
 
+## **Lien du repository**
+https://github.com/Loeryx/tp_symfony
+
+
 ## 🔑 **Accès Démo**
 
 Des comptes de démonstration sont disponibles :
