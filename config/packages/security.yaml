@@ -43,6 +43,7 @@ security:
         - { path: ^/banned, roles: ROLE_BANNED }
             # Permet à tout le monde d'accéder à la page d'accueil
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profile, roles: ROLE_USER }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 

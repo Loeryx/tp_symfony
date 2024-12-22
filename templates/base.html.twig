@@ -29,7 +29,7 @@
                     {% if 'ROLE_ADMIN' in app.user.roles %}
                         <li><a href="{{ path('page_adminpage') }}" class="hover:text-blue-300">Admin</a></li>
                     {% elseif 'ROLE_USER' in app.user.roles %}
-                        <li><a href="" class="hover:text-blue-300">Profile</a></li>
+                        <li><a href="{{ path('page_profilepage') }}" class="hover:text-blue-300">Profile</a></li>
                     {% endif %}
                     <li><a href="{{ path('app_logout') }}" class="hover:text-blue-300">Logout</a></li>
                 {% else %}

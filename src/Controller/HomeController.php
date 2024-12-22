@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\RestaurantRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,7 +37,7 @@ class HomeController extends AbstractController
     #[Route('/banned', 'page_bannedpage')]
     public function banned(): Response
     {
-        return $this->render('banned.html.twig', [
+        return $this->render('admin/banned.html.twig', [
             'message' => 'You are banned from this platform. Please contact support if you think this is a mistake.',
         ]);
     }

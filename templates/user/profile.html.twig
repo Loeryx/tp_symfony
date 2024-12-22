@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block body %}
+    <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
+        <h1 class="text-3xl font-semibold mb-6 text-center">User Profile</h1>
+
+        <div class="space-y-4">
+            <div>
+                <h2 class="text-xl font-medium">Personal Information</h2>
+                <ul class="mt-2 space-y-2 text-gray-600">
+                    <li><strong>Name:</strong> {{ user.name }}</li>
+                    <li><strong>Last Name:</strong> {{ user.lastName }}</li>
+                    <li><strong>Email:</strong> {{ user.email }}</li>
+                    <li><strong>Phone:</strong> {{ user.phone ?: 'N/A' }}</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-medium mt-6">Reservations</h2>
+                {% if reservations|length > 0 %}
+                    <table class="w-full mt-2 border-collapse border border-gray-200">
+                        <thead>
+                        <tr class="bg-gray-100">
+                            <th class="p-2 border">Restaurant</th>
+                            <th class="p-2 border">Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for reservation in reservations %}
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-2 border text-center">
+                                    {{ reservation.reservedTable.restaurant ? reservation.reservedTable.restaurant.name : 'N/A' }}
+                                </td>
+                                <td class="p-2 border text-center">
+                                    {{ reservation.reservationDate|date('Y-m-d H:i') }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p class="text-gray-500 mt-2">You have no reservations.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
