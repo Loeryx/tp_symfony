@@ -42,7 +42,26 @@
     </div>
 </nav>
 
-<!-- Main Content -->
+{% if app.request.attributes.get('_route') == 'page_homepage' %}
+    <div class="container mx-auto px-4 py-4">
+        <form method="get" action="{{ path('page_homepage') }}" class="flex items-center space-x-4">
+            <label for="category" class="text-lg font-medium">Filter by Category:</label>
+            <select name="category" id="category" class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <option value="" {% if not selectedCategory %}selected{% endif %}>All Categories</option>
+                {% for category in availableCategories %}
+                    <option value="{{ category.value }}" {% if selectedCategory == category.value %}selected{% endif %}>
+                        {{ category.value|capitalize }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">
+                Filter
+            </button>
+        </form>
+    </div>
+{% endif %}
+
+
 <div class="container mx-auto px-4 py-8">
     {% block body %} {% endblock %}
 </div>

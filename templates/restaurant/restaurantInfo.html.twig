@@ -6,20 +6,22 @@
     <!-- Restaurant Info -->
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img src="https://via.placeholder.com/400x250" alt="Restaurant" class="w-full h-64 object-cover">
             <div class="p-6">
-                <img src="https://via.placeholder.com/400x250" alt="Restaurant" class="w-full h-56 object-cover">
                 <h1 class="text-4xl font-semibold text-gray-800">{{ restaurant.name }}</h1>
-                <p class="text-lg text-gray-600 mt-2">{{ restaurant.address }}</p>
-                <p class="text-lg text-gray-600 mt-2">Phone: {{ restaurant.phone }}</p>
-                <p class="text-lg text-gray-600 mt-2">Category: {{ restaurant.category.value }}</p>
+                <p class="text-lg text-gray-600 mt-2"><strong>Address:</strong> {{ restaurant.address }}</p>
+                <p class="text-lg text-gray-600 mt-2"><strong>Phone:</strong> {{ restaurant.phone }}</p>
+                <p class="text-lg text-gray-600 mt-2"><strong>Category:</strong> {{ restaurant.category.value }}</p>
+
+                <!-- Reservation Button -->
                 <div class="mt-4">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <a href="{{ path('app_new_reservation_from_user', {'id': restaurant.id}) }}"
-                           class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                           class="inline-block px-6 py-2 bg-blue-600 text-white font-medium text-lg rounded-md hover:bg-blue-700">
                             Make a Reservation
                         </a>
                     {% else %}
-                        <p class="text-red-600">
+                        <p class="text-red-600 mt-2">
                             You need to
                             <a href="{{ path('app_login') }}" class="text-blue-600 hover:underline">log in</a>
                             to make a reservation.
@@ -35,10 +37,10 @@
             {% if restaurant.menus is not empty %}
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {% for menu in restaurant.menus %}
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden p-4">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden p-4 hover:shadow-lg transition-shadow duration-300">
                             <h3 class="text-xl font-semibold text-gray-800">{{ menu.name }}</h3>
                             <p class="text-gray-600 mt-2">{{ menu.description }}</p>
-                            <p class="text-lg text-gray-700 mt-2">Price: {{ menu.price }}€</p>
+                            <p class="text-lg text-gray-700 mt-2"><strong>Price:</strong> {{ menu.price }}€</p>
                         </div>
                     {% endfor %}
                 </div>
@@ -53,10 +55,10 @@
             {% if restaurant.reviews|length > 0 %}
                 <div class="space-y-6">
                     {% for review in restaurant.reviews|slice(0, 5) %}
-                        <div class="bg-white p-4 rounded-lg shadow-md">
+                        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                             <p class="font-semibold text-gray-800">{{ review.publisher.name }}</p>
                             {% if review.content is defined %}
-                                <p class="text-gray-600">{{ review.content }}</p>
+                                <p class="text-gray-600 mt-1">{{ review.content }}</p>
                             {% endif %}
                             <div class="text-yellow-500 mt-2">
                                 {% for i in 1..5 %}
@@ -73,6 +75,14 @@
             {% else %}
                 <p class="text-center text-gray-500">No reviews yet</p>
             {% endif %}
+        </div>
+
+        <!-- Back to Home Button -->
+        <div class="mt-8 text-center">
+            <a href="{{ path('page_homepage') }}"
+               class="inline-block px-6 py-2 bg-gray-600 text-white font-medium text-lg rounded-md hover:bg-gray-700">
+                Back to Home
+            </a>
         </div>
     </div>
 {% endblock %}

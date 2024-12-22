@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Restaurant;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\AbstractQuery;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,6 +41,28 @@ class RestaurantRepository extends ServiceEntityRepository
 
         return new Paginator($query);
     }
+
+    public function findByCategory(?string $category): array
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        if ($category) {
+            $qb->andWhere('r.category = :category')
+                ->setParameter('category', $category);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findCategoriesWithRestaurants(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r.category')
+            ->distinct()
+            ->getQuery()
+            ->getResult(AbstractQuery::HYDRATE_SCALAR_COLUMN);
+    }
+
 
     //    /**
     //     * @return Restaurant[] Returns an array of Restaurant objects

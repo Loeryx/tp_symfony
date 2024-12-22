@@ -27,7 +27,7 @@ final class ReservationController extends AbstractController
 
         $form = $this->createForm(ReservationType::class, $reservation, [
             'include_table' => false,
-            'include_customer' => false
+            'include_customer' => false,
         ]);
 
         $form->handleRequest($request);
@@ -46,6 +46,7 @@ final class ReservationController extends AbstractController
             'restaurant' => $restaurant,
         ]);
     }
+
 
 
     #[Route('/admin/reservation' , name: 'app_reservation_index', methods: ['GET'])]

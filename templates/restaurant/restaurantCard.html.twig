@@ -4,7 +4,10 @@
         <h2 class="text-xl font-semibold text-gray-800">{{ restaurant.name }}</h2>
         <p class="text-gray-600 mt-2">{{ restaurant.address }} . {{ restaurant.phone }}</p>
         <div class="mt-4">
-            <a href="{{ path('page_restaurant', { id: restaurant.id })}}" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">View Details</a>
+            <a href="{{ path('page_restaurant', { id: restaurant.id, category: selectedCategory }) }}"
+               class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                View Details
+            </a>
         </div>
     </div>
 </div>

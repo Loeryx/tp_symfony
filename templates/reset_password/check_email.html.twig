@@ -3,9 +3,29 @@
 {% block title %}Password Reset Email Sent{% endblock %}
 
 {% block body %}
-    <p>
-        If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
-        This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-    </p>
-    <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white p-6 rounded-lg shadow-md max-w-2xl mx-auto text-center">
+            <h1 class="text-3xl font-semibold text-gray-800 mb-4">Password Reset Email Sent</h1>
+
+            <p class="text-gray-600 mb-4">
+                If an account matching your email exists, then an email was just sent that contains a link you can use to reset your password.
+            </p>
+
+            <p class="text-gray-600 mb-4">
+                This link will expire in
+                <span class="font-medium text-blue-600">
+                    {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}
+                </span>.
+            </p>
+
+            <p class="text-gray-600 mb-6">
+                If you don't receive an email, please check your spam folder or
+                <a href="{{ path('app_forgot_password_request') }}" class="text-blue-600 hover:underline">try again</a>.
+            </p>
+
+            <a href="{{ path('app_login') }}" class="inline-block mt-4 bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-500">
+                Return to Login
+            </a>
+        </div>
+    </div>
 {% endblock %}
